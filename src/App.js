@@ -1,26 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+import Header from './components/Header';
+import PaymentDetails from './components/PaymentDetails'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
 
-export default App;
+    class App extends Component {
+
+      displayQuestion = () => {
+        this.setState({
+            displayQuestions: !this.state.displayQuestions
+        })
+    }
+      
+      render() {
+        return <div className="App">
+            <Header />
+            <section className="App-main">
+
+              <PaymentDetails />
+              {/* more posts */}
+            </section>
+          </div>;
+      }
+    }
+
+    export default App;
