@@ -9,6 +9,7 @@
   import axios from "axios";
 import AdyenDropin from "../AdyenCheckout";
 
+
  class PaymentDetails extends Component {
     constructor(props){
         super(props);
@@ -67,23 +68,20 @@ import AdyenDropin from "../AdyenCheckout";
                           countryCode: document.getElementById("countryCode").value,
                           salesChannel: document.getElementById("salesChannel").value};
                           console.info('Payment Submitted' + '\n' +
-                          'Amount: ' + paymentDetailsObj.currency + paymentDetailsObj.amount + '\n' + 
+                          'Amount: ' + paymentDetailsObj.currencyCode + paymentDetailsObj.amount + '\n' + 
                           'Country Code: ' + paymentDetailsObj.countryCode + '\n' + 
                           'Sales Channel: ' + paymentDetailsObj.salesChannel );
                           
                           //get paymentMethods from the server
-                          axios.post('http://localhost:5000/getPaymentMethods', {
+                          axios.post('https://mypaymentsserver.firebaseapp.com/getPaymentMethods', {
                 value: paymentDetailsObj.amount,
                 countryCode: paymentDetailsObj.countryCode,
                 currencyCode: paymentDetailsObj.currencyCode,
                 salesChannel: paymentDetailsObj.salesChannel
-              }, {
-                headers: {
-                    'Content-Type': 'application/json',
-                }
             })
               .then((response) => {
                  //load payment details request and payment method response to state & update the state
+                 console.log(this.state.paymentState);
                 this.setState({paymentMethods: response.data, paymentState:'selectMethod', paymentDetails: paymentDetailsObj});
               }, (error) => {
                 console.log(error);

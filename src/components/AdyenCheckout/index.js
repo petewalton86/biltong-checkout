@@ -3,7 +3,7 @@ import axios from "axios";
 import './AdyenCheckout.css'
 
 let referenceReq = 'Pete Walton Test Payment';
-let returnURLReq = 'http://localhost:4200';
+let returnURLReq = 'https://adyencheckoutdemo-1a4b2.firebaseapp.com/';
 
 class AdyenDropin extends Component {
     constructor(props) {
@@ -34,7 +34,7 @@ class AdyenDropin extends Component {
       const configuration = {
       locale: "en_US",
       environment: "test",
-      originKey: "pub.v2.8115650120946270.aHR0cDovL2xvY2FsaG9zdDo0MjAw.sN72TMJHC1AFtfSIcfSG4s7RKrMVkEVVM6AaogarE7g",
+      originKey: "pub.v2.8115650120946270.aHR0cHM6Ly9teWFkeWVuY2hlY2tvdXQuZmlyZWJhc2VhcHAuY29t.HuSyWx_EnZXt2r0aaJKPWDyKvPq3YcnCemdDpNeC8YI",
       paymentMethodsResponse: this.props.paymentMethods, 
       amount: {
         value: this.props.paymentDetails.amount,
@@ -57,7 +57,7 @@ class AdyenDropin extends Component {
           
         onSubmit: (state, dropin) => {
             //make a payment using the state data and payment request data
-            axios.post('http://localhost:5000/makePayment', 
+            axios.post('https://mypaymentsserver.firebaseapp.com/makePayment', 
                  {
                     value: this.props.paymentDetails.amount,
                     countryCode: this.props.paymentDetails.countryCode,
